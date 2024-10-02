@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from redis_om import get_redis_connection, HashModel
 
+import os
+from dotenv import load_dotenv
+
 app = FastAPI()
 
 app.add_middleware(
@@ -11,10 +14,12 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+load_dotenv(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'main.env'))
+
 redis = get_redis_connection(
-    host="localhost",
-    port=14704,
-    password="fQtJVK3fdWKjvEqK4HYSP28uKqUaJjc6",
+    host=os.getenv('REDIS_HOST'),
+    port=os.getenv('REDIS_PORT'),
+    password=os.getenv('REDIS_PW'),
     decode_responses=True
 )
 

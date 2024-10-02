@@ -5,6 +5,9 @@ from redis_om import get_redis_connection, HashModel
 from starlette.requests import Request
 import requests, time
 
+import os
+from dotenv import load_dotenv
+
 app = FastAPI()
 
 app.add_middleware(
@@ -14,10 +17,12 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+load_dotenv(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'main.env'))
+
 redis = get_redis_connection(
-    host="localhost",
-    port=14705,
-    password="LVAJPGcqZynn9yDm92ZXPFu0pKNPjjDs",
+    host=os.getenv('REDIS_HOST'),
+    port=os.getenv('REDIS_PORT'),
+    password=os.getenv('REDIS_PW'),
     decode_responses=True
 )
 

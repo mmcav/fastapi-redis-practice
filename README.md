@@ -6,8 +6,8 @@ WIP
 
 project to do:
 - actually finish it
-- remove that hardcoded nonsense
-- replace the repeated docker and redis config files
+- exception handling
+- find a solution for the repeated docker and redis config files
 
 readme to do:
 - project description

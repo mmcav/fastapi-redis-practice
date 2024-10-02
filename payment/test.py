@@ -1,10 +1,15 @@
 from redis_om import get_redis_connection, HashModel
 from redis.exceptions import ConnectionError, TimeoutError
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'main.env'))
+
 # Configuration
-redis_host = 'localhost'
-redis_port = 14705
-redis_password = 'LVAJPGcqZynn9yDm92ZXPFu0pKNPjjDs'
+redis_host = os.getenv('REDIS_HOST')
+redis_port = os.getenv('REDIS_PORT')
+redis_password = os.getenv('REDIS_PW')
 
 try:
     # Create a Redis client
